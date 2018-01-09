@@ -77,7 +77,7 @@
 					</span>
 				</td>
 				<td class="text-right">{{ product.price }}</td>
-				<td class="text-right"><input type="checkbox" name="choose" class="product-choose" value="{{ product.product_id }}"></td>
+				<td class="text-right"><input type="checkbox" name="choose[{{ product.product_id }}]" class="product-choose" value="{{ product.product_id }}"></td>
 			</tr>
 			{% endfor %}
 			{% for voucher in vouchers %}
@@ -119,10 +119,13 @@
 		</div>
 		<div class="buttons clearfix">
 			<div class="pull-left"><a href="{{ continue }}" class="btn btn-default">{{ button_shopping }}</a></div>
-			<div class="pull-right"><a href="{{ checkout }}" class="btn btn-primary">{{ button_checkout }}</a></div>
+			<div class="pull-right"><button type="submit" data-toggle="tooltip" title="{{ button_checkout }}" class="btn btn-primary">{{ button_checkout }}</button></div>
 		</div>
 		</form>
 		{{ content_bottom }}</div>
 	{{ column_right }}</div>
 </div>
-{{ footer }} 
+{{ footer }}
+<script type="text/javascript">
+	
+</script>

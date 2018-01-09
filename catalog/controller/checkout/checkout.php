@@ -97,23 +97,15 @@ class ControllerCheckoutCheckout extends Controller {
 	}
 
 	public function stock() {
-		var_dump($this->request->post);
+		$products = $this->request->post['choose'];
 
-		$products = $this->request->post;
-
+		$products_list = array();
+		
 		foreach ($products as $product) {
-			$product_total = 0;
-
-			foreach ($products as $product_2) {
-				if ($product_2['product_id'] == $product['product_id']) {
-					$product_total += $product_2['quantity'];
-				}
-			}
-
-			if ($product['minimum'] > $product_total) {
-				$this->response->redirect($this->url->link('checkout/cart'));
-			}
+			$products_list[$product] = $this->request->post['quantity'][$product];
 		}
+
+		var_dump($products_list);
 
 		$this->load->language('checkout/checkout');
 
