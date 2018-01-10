@@ -56,6 +56,7 @@ class ControllerCheckoutCart extends Controller {
 			$data['products'] = array();
 
 			$products = $this->cart->getProducts();
+			var dump($this->cart);
 
 			foreach ($products as $product) {
 				$product_total = 0;
