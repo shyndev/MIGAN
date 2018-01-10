@@ -62,3 +62,40 @@ CREATE TABLE IF NOT EXISTS `migan_customer_stock` (
 	KEY `customer_id` (`customer_id`),
 	KEY `product_id` (`product_id`)
 )
+
+
+/* 10012018 FORTUNE Steffy */
+
+CREATE TABLE `migan_prestation` (
+	`prestation_id` INT NOT NULL AUTO_INCREMENT,
+	`prix_horaire` DECIMAL(10,2) NOT NULL,
+	`duree_de_base` TIME NOT NULL,
+	`titre` VARCHAR(50) NOT NULL,
+	`description` TEXT NULL,
+	PRIMARY KEY (`prestation_id`)
+)
+COLLATE='latin1_swedish_ci'
+;
+
+CREATE TABLE `migan_prestation_realisee` (
+	`prestation_id` INT NULL,
+	`manufacturer_id` INT NULL,
+	`customer_id` INT NULL,
+	`duree_reelle` TIME NULL,
+	`date` DATE NULL
+)
+COLLATE='latin1_swedish_ci'
+;
+
+ALTER TABLE `migan_manufacturer`
+	ADD COLUMN `type` INT(3) NOT NULL AFTER `sort_order`,
+	ADD COLUMN `adresse1` VARCHAR(255) NOT NULL AFTER `type`,
+	ADD COLUMN `adresse2` VARCHAR(255) NOT NULL AFTER `adresse1`,
+	ADD COLUMN `code_postal` VARCHAR(50) NOT NULL AFTER `adresse2`,
+	ADD COLUMN `country_id` INT NOT NULL AFTER `code_postal`,
+	ADD COLUMN `zone_id` INT NOT NULL AFTER `country_id`,
+	ADD COLUMN `firstname` VARCHAR(50) NOT NULL AFTER `zone_id`,
+	ADD COLUMN `lastname` VARCHAR(50) NOT NULL AFTER `firstname`,
+	ADD COLUMN `SIRET` VARCHAR(50) NOT NULL AFTER `lastname`,
+	ADD COLUMN `email` VARCHAR(50) NOT NULL AFTER `SIRET`,
+	ADD COLUMN `telephone` VARCHAR(50) NOT NULL AFTER `email`;
