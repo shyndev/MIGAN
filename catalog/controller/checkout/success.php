@@ -2,6 +2,14 @@
 class ControllerCheckoutSuccess extends Controller {
 	public function index() {
 		$this->load->language('checkout/success');
+		$this->load->model('checkout/order');
+		$this->load->model('checkout/stock');
+
+		$order_id = $this->session->data['order_id'];
+		$order_info = $this->model_checkout_order->getOrderProducts($order_id);
+		foreach ($order_info as $value) {
+			$this->model_checkout_stock->updateStock($this->session->data['customer_id'], $value['product_id'], $value['quantity']);
+		}
 
 		if (isset($this->session->data['order_id'])) {
 			$this->cart->clear();

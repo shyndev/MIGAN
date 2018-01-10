@@ -61,7 +61,7 @@
 				<td class="text-left">{{ product.model }}</td>
 				<td class="text-left"><div class="input-group btn-block" style="max-width: 200px;">
 					<input type="text" name="quantity[{{ product.product_id }}]" value="{{ product.stock_client }}" size="1" class="form-control quantity" />
-					<span class="input-group-addon stock_reference">/ {{ product.stock_reference }}</span>
+					<span class="input-group-addon">/ <span class="stock_reference">{{ product.stock_reference }}</span></span>
 					<span class="input-group-btn">
 						<button type="submit" data-toggle="tooltip" title="{{ button_update }}" class="btn btn-primary"><i class="fa fa-refresh"></i></button>
 					</span>
@@ -110,23 +110,26 @@
 		</div>
 		<div class="buttons clearfix">
 		<div class="pull-left"><a href="{{ continue }}" class="btn btn-default">{{ button_shopping }}</a></div>
-		<div class="pull-right"><button type="button" id="button_checkout" class="btn btn-primary">{{ button_checkout }}</a></div>
+		<div class="pull-right"><button type="button" id="button_cart" class="btn btn-primary">{{ button_cart }}</a></div>
 		</div>
 		{{ content_bottom }}</div>
 	{{ column_right }}</div>
 </div>
 {{ footer }}
 <script type="text/javascript">
-	$('#button_checkout').click(function(){
-		var tabProduit = [];
+	$('#button_cart').click(function(){
 		$('tbody#table_stock').find('tr').find('input:checked').each(function(i, checkbox){
 			var product_id = $(checkbox).val();
-			var quantity = $(checkbox).parent().parent().find('.quantity').val();
-			var item = {'product_id':product_id, 'quantity':quantity};
-			tabProduit.push(item);
+			var stock_client = $(checkbox).parent().parent().find('.quantity').val();
+			var stock_reference = $(checkbox).parent().parent().find('.stock_reference').text();
+			
+			stock_client = parseInt(stock_client);
+			stock_reference = parseInt(stock_reference);
+			
+			var quantity = stock_reference - stock_client;
+			cart.add(product_id, quantity);
 		});
 
-		var param = $.param(tabProduit);
-		console.log(tabProduit);
+		window.location.href = '{{ cart }}';
 	});
 </script>

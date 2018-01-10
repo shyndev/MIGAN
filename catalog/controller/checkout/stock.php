@@ -45,7 +45,7 @@ class ControllerCheckoutStock extends Controller {
 
 		$data['action'] = $this->url->link('checkout/stock/update', '', true);
 		$data['continue'] = $this->url->link('common/home');
-		$data['checkout'] = $this->url->link('checkout/stock/stock', '', true);
+		$data['cart'] = $this->url->link('checkout/cart', '', true);
 
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');

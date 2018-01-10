@@ -80,9 +80,16 @@ class ControllerCommonHeader extends Controller {
 		$data['menu'] = $this->load->controller('common/menu');
 
 		$this->load->model('account/customer');
-		$customer_id = $this->session->data['customer_id'];
-		$customer = $this->model_account_customer->getCustomer($customer_id);
-		$data['group'] = $customer['customer_group_id'];
+
+		if(isset($this->session->data['customer_id'])){
+			$customer_id = $this->session->data['customer_id'];
+			$customer = $this->model_account_customer->getCustomer($customer_id);
+			$data['group'] = $customer['customer_group_id'];
+		} else {
+			$customer_id = 0;
+			$data['group'] = 0;
+		}
+		
 		return $this->load->view('common/header', $data);
 	}
 }
