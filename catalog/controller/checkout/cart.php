@@ -56,7 +56,6 @@ class ControllerCheckoutCart extends Controller {
 			$data['products'] = array();
 
 			$products = $this->cart->getProducts();
-			var dump($this->cart);
 
 			foreach ($products as $product) {
 				$product_total = 0;
@@ -67,9 +66,9 @@ class ControllerCheckoutCart extends Controller {
 					}
 				}
 
-				if ($product['minimum'] > $product_total) {
+				// if ($product['minimum'] > $product_total) {
 					$data['error_warning'] = sprintf($this->language->get('error_minimum'), $product['name'], $product['minimum']);
-				}
+				// }
 
 				if ($product['image']) {
 					$image = $this->model_tool_image->resize($product['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_cart_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_cart_height'));
@@ -262,6 +261,7 @@ class ControllerCheckoutCart extends Controller {
 	}
 
 	public function add() {
+
 		$this->load->language('checkout/cart');
 
 		$json = array();

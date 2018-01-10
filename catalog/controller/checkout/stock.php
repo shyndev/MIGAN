@@ -43,9 +43,9 @@ class ControllerCheckoutStock extends Controller {
 
 		}
 
-		$data['update'] = $this->url->link('checkout/stock/update', '', true);
+		$data['action'] = $this->url->link('checkout/stock/update', '', true);
 		$data['continue'] = $this->url->link('common/home');
-		$data['checkout'] = $this->url->link('checkout/checkout/stock', '', true);
+		$data['checkout'] = $this->url->link('checkout/stock/stock', '', true);
 
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
@@ -101,5 +101,4 @@ class ControllerCheckoutStock extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
-	
 }

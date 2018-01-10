@@ -41,20 +41,10 @@
 		{% if weight %}
 		&nbsp;({{ weight }})
 		{% endif %} </h1>
-		<form action="{{ checkout }}" method="post" enctype="multipart/form-data">
+		<form action="{{ action }}" method="post" enctype="multipart/form-data">
 		<div class="table-responsive">
 			<table class="table table-bordered">
-			<thead>
-				<tr>
-				<td class="text-center">{{ column_image }}</td>
-				<td class="text-left">{{ column_name }}</td>
-				<td class="text-left">{{ column_model }}</td>
-				<td class="text-left">{{ column_quantity }}</td>
-				<td class="text-right">{{ column_price }}</td>
-				<td class="text-right">{{ column_total }}</td>
-				</tr>
-			</thead>
-			<tbody>
+			<tbody id="table_stock">
 			
 			{% for product in products %}
 			<tr>
@@ -70,14 +60,14 @@
 				<span class="label label-info">{{ text_recurring_item }}</span> <small>{{ product.recurring }}</small> {% endif %}</td>
 				<td class="text-left">{{ product.model }}</td>
 				<td class="text-left"><div class="input-group btn-block" style="max-width: 200px;">
-					<input type="text" name="quantity[{{ product.product_id }}]" value="{{ product.stock_client }}" size="1" class="form-control" />
+					<input type="text" name="quantity[{{ product.product_id }}]" value="{{ product.stock_client }}" size="1" class="form-control quantity" />
 					<span class="input-group-addon stock_reference">/ {{ product.stock_reference }}</span>
 					<span class="input-group-btn">
-						<button type="button" data-toggle="tooltip" title="{{ button_update }}" class="btn btn-primary"><i class="fa fa-refresh"></i></button>
+						<button type="submit" data-toggle="tooltip" title="{{ button_update }}" class="btn btn-primary"><i class="fa fa-refresh"></i></button>
 					</span>
 				</td>
 				<td class="text-right">{{ product.price }}</td>
-				<td class="text-right"><input type="checkbox" name="choose[{{ product.product_id }}]" class="product-choose" value="{{ product.product_id }}"></td>
+				<td class="text-right"><input type="checkbox" name="choose" class="product-choose" value="{{ product.product_id }}"></td>
 			</tr>
 			{% endfor %}
 			{% for voucher in vouchers %}
@@ -98,6 +88,7 @@
 			
 			</table>
 		</div>
+		</form>
 		{% if modules %}
 		<h2>{{ text_next }}</h2>
 		<p>{{ text_next_choice }}</p>
@@ -118,14 +109,24 @@
 		</div>
 		</div>
 		<div class="buttons clearfix">
-			<div class="pull-left"><a href="{{ continue }}" class="btn btn-default">{{ button_shopping }}</a></div>
-			<div class="pull-right"><button type="submit" data-toggle="tooltip" title="{{ button_checkout }}" class="btn btn-primary">{{ button_checkout }}</button></div>
+		<div class="pull-left"><a href="{{ continue }}" class="btn btn-default">{{ button_shopping }}</a></div>
+		<div class="pull-right"><button type="button" id="button_checkout" class="btn btn-primary">{{ button_checkout }}</a></div>
 		</div>
-		</form>
 		{{ content_bottom }}</div>
 	{{ column_right }}</div>
 </div>
 {{ footer }}
 <script type="text/javascript">
-	
+	$('#button_checkout').click(function(){
+		var tabProduit = [];
+		$('tbody#table_stock').find('tr').find('input:checked').each(function(i, checkbox){
+			var product_id = $(checkbox).val();
+			var quantity = $(checkbox).parent().parent().find('.quantity').val();
+			var item = {'product_id':product_id, 'quantity':quantity};
+			tabProduit.push(item);
+		});
+
+		var param = $.param(tabProduit);
+		console.log(tabProduit);
+	});
 </script>
