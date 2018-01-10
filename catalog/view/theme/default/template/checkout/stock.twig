@@ -127,9 +127,16 @@
 			stock_reference = parseInt(stock_reference);
 			
 			var quantity = stock_reference - stock_client;
+			
+			if(quantity == 0){
+				quantity = 1;
+			}
+
 			cart.add(product_id, quantity);
 		});
 
-		window.location.href = '{{ cart }}';
+		setTimeout(function(){
+			window.location.href = '{{ cart }}';
+		}, 2500);
 	});
 </script>
