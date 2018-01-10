@@ -99,3 +99,8 @@ ALTER TABLE `migan_manufacturer`
 	ADD COLUMN `SIRET` VARCHAR(50) NOT NULL AFTER `lastname`,
 	ADD COLUMN `email` VARCHAR(50) NOT NULL AFTER `SIRET`,
 	ADD COLUMN `telephone` VARCHAR(50) NOT NULL AFTER `email`;
+
+
+-- REGNA Lovely 10/01/2018 --
+-- Permet de faire des tests pour les commandes de produits --
+UPDATE migan_product SET quantity = 50
