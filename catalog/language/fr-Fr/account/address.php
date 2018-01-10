@@ -24,9 +24,9 @@ $_['entry_company']        ='Compagnie';
 $_['entry_address_1']      ='Adresse 1';
 $_['entry_address_2']      ='Adresse 2';
 $_['entry_postcode']       ='Code postal';
-$_['entry_city']           ='Ville';
+$_['entry_city']           ='Quartier';
 $_['entry_country']        ='Pays';
-$_['entry_zone']           ='Région / État';
+$_['entry_zone']           ='Commune';
 $_['entry_default']        ='Adresse par défaut';
 
 
@@ -39,7 +39,7 @@ $_['error_lastname']              ='Le nom de famille doit être compris entre 1
 $_['error_vat']                   ='Le numéro de TVA est invalide!';
 $_['error_address_1']             ='L\'adresse doit être comprise entre 3 et 128 caractères!';
 $_['error_postcode']              ='Le code postal doit comporter entre 2 et 10 caractères!';
-$_['error_city']                  ='La ville doit avoir entre 2 et 128 caractères!';
+$_['error_city']                  ='Le quartier doit avoir entre 2 et 128 caractères!';
 $_['error_country']               ='Sélectionnez un pays!';
-$_['error_zone']                  ='Sélectionnez une région / état!';
+$_['error_zone']                  ='Sélectionnez une commune!';
 $_['error_custom_field']          ='%s requis!';
