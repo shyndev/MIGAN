@@ -83,22 +83,4 @@ class ControllerCheckoutStock extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
-
-	public function command(){
-		$this->load->model('checkout/stock');
-
-		$json = array();
-		// var_dump($this->request->post);
-
-		// Update
-		if (!empty($this->request->post['quantity'])) {
-			foreach ($this->request->post['quantity'] as $product_id => $quantity) {
-				$this->model_checkout_stock->updateStock($this->session->data['customer_id'], $product_id, $quantity);
-			}
-			// $this->response->redirect($this->url->link('checkout/stock'));
-		}
-
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
 }
