@@ -49,7 +49,6 @@ class ModelCheckoutstock extends Model {
 		$stock_reference = $stock['stock_reference'];
 		
 		if($nombre == 0){
-			// INSERT
 			$sql = "INSERT INTO " . DB_PREFIX . "customer_stock SET customer_id = $customer_id, product_id = $product_id, stock_client = $quantite, stock_reference = $quantite";
 			// var_dump($sql);
 			$query = $this->db->query($sql);

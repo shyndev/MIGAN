@@ -25,6 +25,7 @@ $_['button_address_add']    = 'Add Address';
 $_['button_back']           = 'Back';
 $_['button_continue']       = 'Continue';
 $_['button_cart']           = 'Add to Cart';
+$_['button_product']        = 'Add products';
 $_['button_cancel']         = 'Cancel';
 $_['button_compare']        = 'Compare this Product';
 $_['button_wishlist']       = 'Add to Wish List';

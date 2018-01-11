@@ -31,6 +31,7 @@ $_['button_address_add']    ='Ajoutez l\'adresse';
 $_['button_back']           ='Arrière';
 $_['button_continue']       ='Continuer';
 $_['button_cart']           ='Ajouter au panier';
+$_['button_product']        ='Ajouter des produits';
 $_['button_cancel']         ='Annuler';
 $_['button_compare']        ='Comparez ce produit';
 $_['button_wishlist']       ='Ajouter à la liste de souhaits';
