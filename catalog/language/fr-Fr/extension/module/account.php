@@ -16,6 +16,7 @@ $_['text_edit']        ='Modifier le compte';
 $_['text_password']    ='Mot de passe';
 $_['text_address']     ='Carnet d\'adresses';
 $_['text_wishlist']    ='Liste de souhaits';
+$_['text_stock']       ='Mon stock';
 $_['text_order']       ='Historique des commandes';
 $_['text_download']    ='Téléchargements';
 $_['text_reward']      ='Points de récompense';

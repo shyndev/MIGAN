@@ -12,6 +12,7 @@ $_['text_edit']        = 'Edit Account';
 $_['text_password']    = 'Password';
 $_['text_address']     = 'Address Book';
 $_['text_wishlist']    = 'Wish List';
+$_['text_stock']       = 'My stock';
 $_['text_order']       = 'Order History';
 $_['text_download']    = 'Downloads';
 $_['text_reward']      = 'Reward Points';

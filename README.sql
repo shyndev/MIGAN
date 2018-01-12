@@ -1,4 +1,4 @@
-CREATE TABLE `migan_recette` (
+CREATE TABLE IF NOT EXISTS `migan_recette` (
 	`recette_id` INT NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(50) NOT NULL DEFAULT '',
 	`description` TEXT NULL DEFAULT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE `migan_recette` (
 )
 COLLATE='latin1_swedish_ci'
 ;
-CREATE TABLE `miganoc`.`migan_recette_image` (
+CREATE TABLE IF NOT EXISTS `miganoc`.`migan_recette_image` (
 	`product_image_id` INT(11) NOT NULL AUTO_INCREMENT,
 	`product_id` INT(11) NOT NULL,
 	`image` VARCHAR(255) NULL DEFAULT NULL,
@@ -34,7 +34,7 @@ ALTER TABLE `migan_recette_image`
 	CHANGE COLUMN `product_image_id` `recette_image_id` INT(11) NOT NULL AUTO_INCREMENT FIRST,
 	CHANGE COLUMN `product_id` `recette_id` INT(11) NOT NULL AFTER `recette_image_id`;
 
-	CREATE TABLE `migan_recette_product` (
+CREATE TABLE IF NOT EXISTS `migan_recette_product` (
 	`recette_id` INT NOT NULL,
 	`product_id` INT NOT NULL,
 	PRIMARY KEY (`recette_id`, `product_id`)
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `migan_customer_stock` (
 
 /* 10012018 FORTUNE Steffy */
 
-CREATE TABLE `migan_prestation` (
+CREATE TABLE IF NOT EXISTS `migan_prestation` (
 	`prestation_id` INT NOT NULL AUTO_INCREMENT,
 	`prix_horaire` DECIMAL(10,2) NOT NULL,
 	`duree_de_base` TIME NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE `migan_prestation` (
 COLLATE='latin1_swedish_ci'
 ;
 
-CREATE TABLE `migan_prestation_realisee` (
+CREATE TABLE IF NOT EXISTS `migan_prestation_realisee` (
 	`prestation_id` INT NULL,
 	`manufacturer_id` INT NULL,
 	`customer_id` INT NULL,
@@ -99,3 +99,8 @@ ALTER TABLE `migan_manufacturer`
 	ADD COLUMN `SIRET` VARCHAR(50) NOT NULL AFTER `lastname`,
 	ADD COLUMN `email` VARCHAR(50) NOT NULL AFTER `SIRET`,
 	ADD COLUMN `telephone` VARCHAR(50) NOT NULL AFTER `email`;
+
+
+-- REGNA Lovely 10/01/2018 --
+-- Permet de faire des tests pour les commandes de produits --
+UPDATE migan_product SET quantity = 50

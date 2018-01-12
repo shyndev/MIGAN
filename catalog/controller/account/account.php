@@ -89,6 +89,16 @@ class ControllerAccountAccount extends Controller {
 		$data['content_bottom'] = $this->load->controller('common/content_bottom');
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
+
+		if(isset($this->session->data['customer_id'])){
+			$customer_id = $this->session->data['customer_id'];
+			$customer = $this->model_account_customer->getCustomer($customer_id);
+			$data['stock'] = $this->url->link('checkout/stock');
+			$data['group'] = $customer['customer_group_id'];
+		} else {
+			$customer_id = 0;
+			$data['group'] = 0;
+		}
 		
 		$this->response->setOutput($this->load->view('account/account', $data));
 	}

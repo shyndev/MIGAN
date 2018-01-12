@@ -68,7 +68,6 @@ class ControllerCommonColumnRight extends Controller {
 				}
 			}
 		}
-
 		return $this->load->view('common/column_right', $data);
 	}
 }

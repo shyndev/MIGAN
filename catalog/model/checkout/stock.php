@@ -43,16 +43,15 @@ class ModelCheckoutstock extends Model {
 
 	public function updateStock($customer_id, $product_id, $quantite){
 		$stock = $this->getStock($customer_id, $product_id);
-		var_dump($stock);
 		
 		$nombre = $stock['nombre'];
 		$stock_client = $stock['stock_client'];
 		$stock_reference = $stock['stock_reference'];
 		
 		if($nombre == 0){
-			// INSERT
-			$sql = "INSERT INTO customer_stock SET customer_id = $customer_id, product_id = $product_id, stock_client = $quantite, stock_reference = $quantite";
-			var_dump($sql);
+			$sql = "INSERT INTO " . DB_PREFIX . "customer_stock SET customer_id = $customer_id, product_id = $product_id, stock_client = $quantite, stock_reference = $quantite";
+			// var_dump($sql);
+			$query = $this->db->query($sql);
 		} else {
 			$stock_client = $stock_client + $quantite;
 			
@@ -61,7 +60,8 @@ class ModelCheckoutstock extends Model {
 			}
 		
 			$sql = "UPDATE " . DB_PREFIX . "customer_stock SET stock_client = $stock_client, stock_reference = $stock_reference WHERE customer_id = $customer_id AND product_id = $product_id";
-			var_dump($sql);
+			// var_dump($sql);
+			$query = $this->db->query($sql);
 		}
 	}
 

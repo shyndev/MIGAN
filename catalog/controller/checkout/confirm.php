@@ -46,9 +46,8 @@ class ControllerCheckoutConfirm extends Controller {
 				}
 			}
 
-			if ($product['minimum'] > $product_total) {
+			if (0 > $product_total) {
 				$redirect = $this->url->link('checkout/cart');
-
 				break;
 			}
 		}
@@ -415,8 +414,9 @@ class ControllerCheckoutConfirm extends Controller {
 				$data['goodies']['response'] = $this->model_checkout_goodies->distributeGoodie($data['goodies']['type'], $data['goodies']['sexe'], $data['goodies']['taille'], $data['goodies']['couleur'], $this->session->data['order_id']);
 			}
 		} else {
-			$data['redirect'] = $redirect;
+			// $data['redirect'] = $redirect;
 			$data['goodies']['response'] = false;
+			print('Désolé!');
 		}
 
 		$this->response->setOutput($this->load->view('checkout/confirm', $data));

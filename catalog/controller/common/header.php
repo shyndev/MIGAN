@@ -69,7 +69,6 @@ class ControllerCommonHeader extends Controller {
 		$data['logout'] = $this->url->link('account/logout', '', true);
 		$data['shopping_cart'] = $this->url->link('checkout/cart');
 		$data['checkout'] = $this->url->link('checkout/checkout', '', true);
-		$data['stock'] = $this->url->link('checkout/stock');
 		$data['contact'] = $this->url->link('information/contact');
 		$data['telephone'] = $this->config->get('config_telephone');
 		
@@ -80,9 +79,17 @@ class ControllerCommonHeader extends Controller {
 		$data['menu'] = $this->load->controller('common/menu');
 
 		$this->load->model('account/customer');
-		$customer_id = $this->session->data['customer_id'];
-		$customer = $this->model_account_customer->getCustomer($customer_id);
-		$data['group'] = $customer['customer_group_id'];
+
+		if(isset($this->session->data['customer_id'])){
+			$customer_id = $this->session->data['customer_id'];
+			$customer = $this->model_account_customer->getCustomer($customer_id);
+			$data['stock'] = $this->url->link('checkout/stock');
+			$data['group'] = $customer['customer_group_id'];
+		} else {
+			$customer_id = 0;
+			$data['group'] = 0;
+		}
+		
 		return $this->load->view('common/header', $data);
 	}
 }
