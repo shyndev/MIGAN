@@ -160,12 +160,13 @@ $(document).ready(function() {
 		alert("Le total de la commande doit \u00EAtre sup\u00E9rieur \u00E0 20\u20AC  pour pouvoir commander");
 		window.location.href='http://localhost/MIGAN/index.php?route=checkout/cart';
 	}
-	else {
+	elseif(not_enough==0) {
 	
 	window.location.href='http://localhost/MIGAN/index.php?route=checkout/checkout';
 	
 	};
 });
+
 {% endif %}
 
 // Checkout
