@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: charset=utf-8');
 class ControllerCheckoutCheckout extends Controller {
 	public function index() {
 		// Validate cart has products and has stock.
@@ -21,7 +22,35 @@ class ControllerCheckoutCheckout extends Controller {
 			if ($product['minimum'] > $product_total) {
 				$this->response->redirect($this->url->link('checkout/cart'));
 			}
+			
 		}
+		
+		// Totals
+			$this->load->model('setting/extension');
+
+			$totals = array();
+			$taxes = $this->cart->getTaxes();
+			$total = 0;
+			
+			// Because __call can not keep var references so we put them into an array. 			
+			$total_data = array(
+				'totals' => &$totals,
+				'taxes'  => &$taxes,
+				'total'  => &$total
+			);
+			
+			
+		
+		if ($total<=20){
+			
+				$data['not_enough']= 1;
+			}
+		else{
+		
+		$date['not_enough']= 0;
+		
+		}
+			
 
 		$this->load->language('checkout/checkout');
 

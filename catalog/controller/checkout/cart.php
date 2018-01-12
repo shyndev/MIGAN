@@ -66,9 +66,10 @@ class ControllerCheckoutCart extends Controller {
 					}
 				}
 
-				// if ($product['minimum'] > $product_total) {
+				if ($product['minimum'] > $product_total) {
 					$data['error_warning'] = sprintf($this->language->get('error_minimum'), $product['name'], $product['minimum']);
-				// }
+					
+				}
 
 				if ($product['image']) {
 					$image = $this->model_tool_image->resize($product['image'], $this->config->get('theme_' . $this->config->get('config_theme') . '_image_cart_width'), $this->config->get('theme_' . $this->config->get('config_theme') . '_image_cart_height'));
@@ -173,6 +174,12 @@ class ControllerCheckoutCart extends Controller {
 				'taxes'  => &$taxes,
 				'total'  => &$total
 			);
+			
+			if ($total<=20){
+			
+				$data['not_enough']= 1;
+			}
+
 			
 			// Display prices
 			if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
