@@ -68,10 +68,7 @@ class ControllerCheckoutCart extends Controller {
 
 				if ($product['minimum'] > $product_total) {
 					$data['error_warning'] = sprintf($this->language->get('error_minimum'), $product['name'], $product['minimum']);
-<<<<<<< HEAD
-					
-=======
->>>>>>> af589a2e2262c9b3cb49189c9f2cab001a43fdb5
+
 				}
 
 				if ($product['image']) {
